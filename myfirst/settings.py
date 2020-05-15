@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os, sys
-import dj_database_url
 import django_heroku
-db_from_env = dj_database_url.config()
-
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'myfirst.urls'
@@ -88,9 +87,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'CONN_MAX_AGE': 500,
     }
 }
-DATABASES['default'].update(db_from_env)
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=600, ssl_require=True))
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -136,3 +137,5 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
