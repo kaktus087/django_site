@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 SECRET_KEY = '))4b#&x!81u4tlu&qc_fua#qpo_ymut=zhoe6%y9e))gd3#lpx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
