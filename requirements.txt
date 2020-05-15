@@ -29,7 +29,6 @@ pefile
 pilkit
 psycopg2
 pyaes
-pygame
 PyInstaller
 pylint
 pyparsing
