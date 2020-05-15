@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os, sys
 import dj_database_url
+import django_heroku
 db_from_env = dj_database_url.config()
 
 
@@ -109,6 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+django_heroku.settings(locals())
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
