@@ -41,7 +41,3 @@ def create_article(request):
 
 def calculator(request):
 	return render(request, 'articles/calculator.html')
-
-def mind(request):
-	webbrowser.open("http://train-your-mind.us-east-2.elasticbeanstalk.com/")
-	return HttpResponseRedirect('/articles/')
