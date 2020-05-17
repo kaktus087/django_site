@@ -9,4 +9,5 @@ urlpatterns = [
 	path('<int:article_id>/leave_comment/', views.leave_comment, name = 'leave_comment'),
 	path('create_article/', views.create_article, name = 'create_article'),
 	path('calculator/', views.calculator, name = 'calculator'),
+	path('vitalik/', views.vitalik, name = 'vitalik'),
 ]

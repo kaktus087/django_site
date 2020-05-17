@@ -41,3 +41,6 @@ def create_article(request):
 
 def calculator(request):
 	return render(request, 'articles/calculator.html')
+
+def vitalik(request):
+	return render(request, 'articles/lefort_and_not_only.html')
