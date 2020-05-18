@@ -8,7 +8,11 @@ window.onload = function() {
     var button = document.getElementById('1');
     var body = document.getElementsByTagName('body')[0];
     button.onclick = function() {
+    	var audio = new Audio(); // Создаём новый элемент Audio
+  		audio.src = "{% static 'Король и Шут - Кукла Колдуна.mp3' %}"; // Указываем путь к звуку "клика"
+  		audio.autoplay = true; // Автоматически запускаем
         body.style.backgroundImage = "url('{% static 'Крысяо.png' %}')";
+        
     };
 };
 </script>
