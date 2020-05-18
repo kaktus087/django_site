@@ -2,11 +2,18 @@
 <html>
 <head>
 	{% load static %}
-	<link rel="stylesheet" href="{% static 'style.css' %}">
-	<script type="text/javascript" src="{% static 'main.js' %}"></script>
-	<title>Лефорт</title>
+<title></title>
+<script type="text/javascript">
+window.onload = function() {
+    var button = document.getElementById('1');
+    var body = document.getElementsByTagName('body')[0];
+    button.onclick = function() {
+        body.style.backgroundImage = "url('{% static 'Крысяо.png' %}')";
+    };
+};
+</script>
 </head>
 <body>
-	<button id="1">ЫЫЫ</button>
+    <input type="button" id="1" value="Крысяо"/>
 </body>
 </html>
