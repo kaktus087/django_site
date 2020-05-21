@@ -28,3 +28,11 @@ class Comment(models.Model):
 	class Meta:
 		verbose_name = 'Комментарий'
 		verbose_name_plural = 'Комментарии'
+
+class Images(models.Model):
+	image_name = models.CharField('Название изображения', max_length=50)
+	image = models.ImageField()
+	file = models.FileField()
+	
+	def __str__(self):
+		return self.image_name

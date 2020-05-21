@@ -3,24 +3,35 @@
 <head>
 	{% load static %}
 <title></title>
-<script type="text/javascript">
-window.onload = function() {
-    var button = document.getElementById('1');
-    var body = document.getElementsByTagName('body')[0];
-    button.onclick = function() {
-    	//var audio = new Audio(); // Создаём новый элемент Audio
-  		//audio.src = "{% static 'Король и Шут - Кукла Колдуна.mp3' %}"; // Указываем путь к звуку "клика"
-  		//audio.autoplay = true; // Автоматически запускаем
-        body.style.backgroundImage = "url('{% static 'Крысяо.png' %}')";
-        
-    };
-};
-</script>
-{% for i in  %}
-  <input type="button" name="">
-{% endfor %}
 </head>
 <body>
-  <input type="button" id="1" value="Крысяо"/>
+
+<div class="parent"> 
+{% for i in all_images %}
+  <button class="myclass" id="{{ i.image_name }}">{{i.image_name}}</button>
+{% endfor %}
+
+
+
+{% for i in all_images %}
+  <script type="text/javascript">
+  window.onload = function() {
+  let button = document.getElementById("{{ i.image_name }}");
+  let audio = new Audio();
+  let body = document.getElementsByTagName('body')[0];
+  
+  document.querySelector('.myclass').addEventListener('click', function(e){
+  if (button){
+    body.style.backgroundImage = "url('{{ i.image.url }}')";
+    return false;
+  };   
+});    
+};
+</script>
+
+{% endfor %}
+</div>
+
+
 </body>
 </html>

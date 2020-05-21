@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
-from . models import Article, Comment#, Images
+from . models import Article, Comment, Images
 from django.urls import reverse
 from django.utils import timezone
 import webbrowser
@@ -43,5 +43,5 @@ def calculator(request):
 	return render(request, 'articles/calculator.html')
 
 def vitalik(request):
-	#images_all = Images.objects.all()
-	return render(request, 'articles/lefort_and_not_only.html')
+	all_images = Images.objects.order_by('image_name')[:10]
+	return render(request, 'articles/lefort_and_not_only.html', {'all_images': all_images})
