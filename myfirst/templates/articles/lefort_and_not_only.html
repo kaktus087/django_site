@@ -23,6 +23,8 @@
   document.querySelector('.myclass').addEventListener('click', function(e){
   if (button){
     body.style.backgroundImage = "url('{{ i.image.url }}')";
+    audio.src = '{{ i.file.url }}';
+    audio.autoplay = true;
     return false;
   };   
 });    
