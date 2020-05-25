@@ -7,8 +7,6 @@ attrs
 chardet
 colorama
 cycler
-discord
-discord.py
 dj-database-url
 Django
 django-appconf
@@ -41,7 +39,6 @@ Pillow
 six
 sqlparse
 sympy
-telebot
 Telethon
 toml
 websockets
