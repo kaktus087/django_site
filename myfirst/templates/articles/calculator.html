@@ -2,9 +2,6 @@
 {% block title %}Calculator{% endblock %}
 {% block content %}
 
-
-
-
 <div id="calc-wrap">
     <div id="calc">
         <textarea id=inputVal>0</textarea>
@@ -103,5 +100,9 @@ window.addEventListener('load', function OnWindowLoaded() {
         resize: vertical;
     }
 </style>
+
+{% if request.user.is_authenticated != True %}
+    <small class="text-muted">Вы не авторизированы!</small>
+{% endif %}
 
 {% endblock %}

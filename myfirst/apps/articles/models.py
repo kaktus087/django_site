@@ -1,8 +1,10 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Article(models.Model):
+	author = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name='Автор статьи')
 	article_title = models.CharField('название статьи', max_length = 200)
 	article_text = models.TextField('текст статьи')
 	pub_date = models.DateTimeField('дата публикации')

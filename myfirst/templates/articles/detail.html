@@ -3,9 +3,13 @@
 {% block title %}{{ article.article_title }}{% endblock %}
 
 {% block content %}
+
+
+
 <div class="container">
 <div class="alert alert-success" role="alert"><h1>{{ article.article_title }}</h1></div>
 <div class="alert alert-info" role="alert"><p>{{ article.article_text }}</p></div>
+<div class="alert alert-info" role="alert">Автор статьи: {{ article.author }}</div>
 Дата публикации: <em>{{ article.pub_date }}</em>
 <hr>
 {% if latest_comments_list %}
