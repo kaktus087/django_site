@@ -37,6 +37,7 @@ python-dateutil
 pytz==2020.1
 pywin32-ctypes
 requests
+Pillow
 six
 sqlparse
 sympy
