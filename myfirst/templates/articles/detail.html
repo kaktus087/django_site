@@ -5,34 +5,33 @@
 {% block content %}
 
 
-
 <div class="container">
-<div class="alert alert-success" role="alert"><h1>{{ article.article_title }}</h1></div>
-<div class="alert alert-info" role="alert"><p>{{ article.article_text }}</p></div>
-<div class="alert alert-info" role="alert">Автор статьи: {{ article.author }}</div>
-Дата публикации: <em>{{ article.pub_date }}</em>
-<hr>
-{% if latest_comments_list %}
-	{% for c in latest_comments_list %}
-		<p>
-			<div class="alert alert-danger" role="alert">
-				<strong>Имя автора: {{c.author_name}}</strong>
-			</div>
-			<div class="alert alert-secondary" role="alert">
-				<p>Текст комментария: {{ c.comment_text }}</p>
-			</div>
-		</p>
-	{% endfor %}
-{% else %}
-	Комментарии не найдены! Станьте первым :3
-{% endif %}
-<hr>
+    <div class="alert alert-success" role="alert"><h1>{{ article.article_title }}</h1></div>
+    <div class="alert alert-info" role="alert"><p>{{ article.article_text }}</p></div>
+    <div class="alert alert-info" role="alert">Автор статьи: {{ article.author }}</div>
+    Дата публикации: <em>{{ article.pub_date }}</em>
+    <hr>
+    {% if latest_comments_list %}
+    {% for c in latest_comments_list %}
+    <p>
+    <div class="alert alert-danger" role="alert">
+        <strong>Имя автора: {{c.author_name}}</strong>
+    </div>
+    <div class="alert alert-secondary" role="alert">
+        <p>Текст комментария: {{ c.comment_text }}</p>
+    </div>
+    </p>
+    {% endfor %}
+    {% else %}
+    Комментарии не найдены! Станьте первым :3
+    {% endif %}
+    <hr>
 
-<form action="{% url 'articles:leave_comment' article.id %}" method="POST">
-	{% csrf_token %}
-	<input type="text" required placeholder="Ваше имя" name="author_name"><br>
-	<textarea name="comment_text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
-	<button type="submit" class="btn btn-primary">Оставить комменатрий</button>
-</form>
+    <form action="{% url 'articles:leave_comment' article.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" required placeholder="Ваше имя" name="author_name"><br>
+        <textarea name="comment_text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
+        <button type="submit" class="btn btn-primary">Оставить комменатрий</button>
+    </form>
 </div>
 {% endblock %}

@@ -62,6 +62,7 @@ window.addEventListener('load', function OnWindowLoaded() {
         }
     }
 });
+
 </script>
 
 <style>
@@ -99,10 +100,11 @@ window.addEventListener('load', function OnWindowLoaded() {
         font-size: 16px;
         resize: vertical;
     }
+
 </style>
 
 {% if request.user.is_authenticated != True %}
-    <small class="text-muted">Вы не авторизированы!</small>
+<small class="text-muted">Вы не авторизированы!</small>
 {% endif %}
 
 {% endblock %}

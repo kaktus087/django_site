@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
-from . models import Article, Comment, Images
+from .models import Article, Comment, Images
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
@@ -23,7 +23,7 @@ def detail(request, article_id):
 
         return render(request, 'articles/detail.html', {'article': a, 'latest_comments_list': latest_comments_list, })
     else:
-        return HttpResponseRedirect("/accounts/login/")
+        return HttpResponseRedirect("/user/login/")
 
 
 def leave_comment(request, article_id):
@@ -31,14 +31,14 @@ def leave_comment(request, article_id):
         try:
             a = Article.objects.get(id=article_id)
         except:
-                raise Http404("Статья не найдена")
+            raise Http404("Статья не найдена")
 
         a.comment_set.create(author_name=request.POST['author_name'],
                              comment_text=request.POST['comment_text'])
 
         return HttpResponseRedirect(reverse('articles:detail', args=(a.id,)))
     else:
-        return HttpResponseRedirect("/accounts/login/")
+        return HttpResponseRedirect("/user/login/")
 
 
 def create_article(request):
@@ -49,11 +49,11 @@ def create_article(request):
             article_text=request.POST['article_text'],
             pub_date=timezone.now())
         a.save()
-        #a.author = request.user
+        # a.author = request.user
         return HttpResponseRedirect('/articles/')
 
     else:
-        return HttpResponseRedirect("/accounts/login/")
+        return HttpResponseRedirect("/user/login/")
 
 
 def calculator(request):
@@ -61,6 +61,15 @@ def calculator(request):
 
 
 def vitalik(request):
-
-    all_images = Images.objects.order_by()
+    all_images = Images.objects.order_by()[:1]
     return render(request, 'articles/lefort_and_not_only.html', {'all_images': all_images})
+
+
+def register(request):
+    return render(request, 'articles/register.html')
+
+
+def create_user(request):
+    user = User.objects.create_user(request.POST['username'], '', request.POST['password'])
+    user.save()
+    return HttpResponseRedirect("/user/login/")

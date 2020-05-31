@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('articles/', include('articles.urls'))
+    path('user/', include('django.contrib.auth.urls')),
+    path('', include('articles.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
