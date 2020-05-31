@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, sys
+import os
+import sys
 import django_heroku
 import dj_database_url
 
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
 
 ]
 
@@ -93,7 +94,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default'].update(dj_database_url.config(conn_max_age=600, ssl_require=True))
+DATABASES['default'].update(dj_database_url.config(
+    conn_max_age=600, ssl_require=True))
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -137,13 +139,16 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 #STATIC_ROOT = ''
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_DIRS = ( os.path.join('static'), )
+STATICFILES_DIRS = (os.path.join('static'), )
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+
+

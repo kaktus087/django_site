@@ -5,26 +5,22 @@
 	{% load static %}
 <title></title>
 </head>
-<body>
+<body class="body_class" >
 {% block content %}
 {% if request.user.is_authenticated != True %}
     Вы не авторизированы!<br>
     <a href="{% url 'login' %}">Авторизоваться</a>
-{% else %}
-  {% if user.is_superuser != True %}
+
       ТЫ НЕ АДМИН!
   {% else %}   
     <div class="parent"> 
-    {% for i in all_images %}
-      <button class="myclass" id="{{ i.image_name }}">{{i.image_name}}</button>
-    {% endfor %}
+
     {% for i in all_images %}
       <script type="text/javascript">
       window.onload = function() {
       let button = document.getElementById("{{ i.image_name }}");
       let audio = new Audio();
       let body = document.getElementsByTagName('body')[0];
-      
       document.querySelector('.myclass').addEventListener('click', function(e){
       if (button){
         body.style.backgroundImage = "url('{{ i.image.url }}')";
@@ -35,6 +31,7 @@
     });    
     };
     </script>
+    <button class="myclass" id="{{ i.image_name }}">{{i.image_name}}</button>
     {% endfor %}
     </div>
   {% endif %}

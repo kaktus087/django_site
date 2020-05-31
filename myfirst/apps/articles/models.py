@@ -3,38 +3,43 @@ import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 class Article(models.Model):
-	author = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name='Автор статьи')
-	article_title = models.CharField('название статьи', max_length = 200)
-	article_text = models.TextField('текст статьи')
-	pub_date = models.DateTimeField('дата публикации')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Автор статьи')
+    article_title = models.CharField('название статьи', max_length=200)
+    article_text = models.TextField('текст статьи')
+    pub_date = models.DateTimeField('дата публикации')
 
-	def __str__(self):
-		return self.article_title
+    def __str__(self):
+        return self.article_title
 
-	def was_published_recently(self):
-		return self.pub_date >= (timezone.now() - datetime.timedelta(days = 7))
+    def was_published_recently(self):
+        return self.pub_date >= (timezone.now() - datetime.timedelta(days=7))
 
-	class Meta:
-		verbose_name = 'Статья'
-		verbose_name_plural = 'Статьи'
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
+
 
 class Comment(models.Model):
-	article = models.ForeignKey(Article, on_delete = models.CASCADE)
-	author_name = models.CharField('имя автора', max_length = 50)
-	comment_text = models.CharField('текст комментария', max_length = 200)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    author_name = models.CharField('имя автора', max_length=50)
+    comment_text = models.CharField('текст комментария', max_length=200)
 
-	def __str__(self):
-		return self.author_name
+    def __str__(self):
+        return self.author_name
 
-	class Meta:
-		verbose_name = 'Комментарий'
-		verbose_name_plural = 'Комментарии'
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
 
 class Images(models.Model):
-	image_name = models.CharField('Название изображения', max_length=50)
-	image = models.ImageField()
-	file = models.FileField()
-	
-	def __str__(self):
-		return self.image_name
+    image_name = models.CharField('Название изображения', max_length=50)
+    image = models.ImageField()
+    file = models.FileField()
+
+    def __str__(self):
+        return self.image_name
+        
