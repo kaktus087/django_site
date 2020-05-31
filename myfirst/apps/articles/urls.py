@@ -9,7 +9,7 @@ urlpatterns = [
     path('articles/<int:article_id>/leave_comment/', views.leave_comment, name='leave_comment'),
     path('articles/create_article/', views.create_article, name='create_article'),
     path('calculator/', views.calculator, name='calculator'),
-    path('articles/vitalik/', views.vitalik, name='vitalik'),
+    path('vitalik/', views.vitalik, name='vitalik'),
     path('registration/', views.register, name='register'),
     path('registration/create_user', views.create_user, name='create_user')
 ]

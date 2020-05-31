@@ -7,13 +7,8 @@
 </head>
 <body class="body_class" >
 {% block content %}
-{% if request.user.is_authenticated != True %}
-    Вы не авторизированы!<br>
-    <a href="{% url 'login' %}">Авторизоваться</a>
-{% else %}
-  {% if user.is_superuser != True %}
-      ТЫ НЕ АДМИН!
-  {% else %}
+
+
     <div class="parent">
 
     {% for i in all_images %}
@@ -35,8 +30,7 @@
     <button class="myclass" id="{{ i.image_name }}">{{i.image_name}}</button>
     {% endfor %}
     </div>
-  {% endif %}
-{% endif %}
+
 {% endblock %}
 </body>
 </html>
