@@ -77,8 +77,11 @@ def create_user(request):
 
 def change_image(request):
     image = Images.objects.get(id=6)
-    image.image_name = request.POST['change_image_name']
-    image.image = request.FILES['photo']
-    image.file = request.FILES['audio']
-    image.save()
+    try:
+        image.image_name = request.POST['change_image_name']
+        image.image = request.FILES['photo']
+        image.file = request.FILES['audio']
+        image.save()
+    except Exception:
+        return HttpResponseRedirect("/vitalik/")
     return HttpResponseRedirect("/vitalik/")
