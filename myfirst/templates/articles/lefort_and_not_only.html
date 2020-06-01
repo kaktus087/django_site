@@ -2,17 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% load static %}
-<title></title>
+    {% load static %}
+    <title></title>
 </head>
-<body class="body_class" >
+<body class="body_class">
 {% block content %}
 
 
-    <div class="parent">
+<div class="parent">
 
     {% for i in all_images %}
-      <script type="text/javascript">
+    <script type="text/javascript">
       window.onload = function() {
       let button = document.getElementById("{{ i.image_name }}");
       let audio = new Audio();
@@ -26,11 +26,25 @@
       };
     });
     };
+
+
     </script>
     <button class="myclass" id="{{ i.image_name }}">{{i.image_name}}</button>
     {% endfor %}
-    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="form">
+    <form action="{% url 'articles:change_image' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="change_image_name" placeholder="Название"><br>
+        <input type="file" name="photo" placeholder="Картинка"><br>
+        <input type="file" name="audio" placeholder="Аудио"><br>
+        <button type="submit" class="btn btn-primary">Change</button>
 
+    </form>
+</div>
 {% endblock %}
 </body>
 </html>

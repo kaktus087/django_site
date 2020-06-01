@@ -11,5 +11,6 @@ urlpatterns = [
     path('calculator/', views.calculator, name='calculator'),
     path('vitalik/', views.vitalik, name='vitalik'),
     path('registration/', views.register, name='register'),
-    path('registration/create_user', views.create_user, name='create_user')
+    path('registration/create_user/', views.create_user, name='create_user'),
+    path('vitalik/change_image/', views.change_image, name='change_image'),
 ]

@@ -73,3 +73,12 @@ def create_user(request):
     user = User.objects.create_user(request.POST['username'], '', request.POST['password'])
     user.save()
     return HttpResponseRedirect("/user/login/")
+
+
+def change_image(request):
+    image = Images.objects.get(id=6)
+    image.image_name = request.POST['change_image_name']
+    image.image = request.FILES['photo']
+    image.file = request.FILES['audio']
+    image.save()
+    return HttpResponseRedirect("/vitalik/")
