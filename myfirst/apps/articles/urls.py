@@ -13,4 +13,6 @@ urlpatterns = [
     path('registration/', views.register, name='register'),
     path('registration/create_user/', views.create_user, name='create_user'),
     path('vitalik/change_image/', views.change_image, name='change_image'),
+    path('send_message/', views.send_message, name='send_message'),
+    path('chat/', views.chat, name='chat'),
 ]

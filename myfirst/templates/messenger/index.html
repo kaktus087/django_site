@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+<div class="div_messages">
+	<table border="1" class="table_messages">
+		{% for message in messages %}
+			<tr>
+				<td>{{message.username}}</td>
+				<td>{{message.text}}</td>
+				<td>{{message.timestamp}}</td>
+			</tr>
+	{% endfor %}
+	</table>
+</div>
+<form action="{% url 'articles:send_message' %}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="text_message"><br>
+	<button type="submit" class="btn btn-primary">Send Message</button>
+
+</form>
+
+{% endblock %}

@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Article(models.Model):
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name='Автор статьи')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор статьи')
     article_title = models.CharField('название статьи', max_length=200)
     article_text = models.TextField('текст статьи')
     pub_date = models.DateTimeField('дата публикации')
@@ -42,3 +41,16 @@ class Images(models.Model):
 
     def __str__(self):
         return self.image_name
+
+class Messages(models.Model):
+    naming_message = 'Message'
+    username = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор сообщения')
+    text = models.TextField('Текст сообщения')
+    timestamp = models.TimeField('Время отправки сообщения')
+
+    def __str__(self):
+        return self.naming_message
+
+    class Meta:
+        verbose_name = 'Message'
+        verbose_name_plural = 'Messages'

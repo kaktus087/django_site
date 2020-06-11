@@ -1,11 +1,16 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from .models import Article, Comment, Images
+from .models import Article, Comment, Images, Messages
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 import webbrowser
+import time
+import requests
 
+messages = [
+    {'username': 'Jack', 'text': 'Hello!', 'timestamp': time.time()}
+]
 
 def index(request):
     latest_article_list = Article.objects.order_by('-pub_date')
@@ -85,3 +90,19 @@ def change_image(request):
     except Exception:
         return HttpResponseRedirect("/vitalik/")
     return HttpResponseRedirect("/vitalik/")
+
+def send_message(request):
+    if (len(request.POST['text_message']) < 1) == False :
+        message = Messages(
+        username=request.user,
+        text=request.POST['text_message'],
+        timestamp= timezone.now())
+        message.save()
+        return HttpResponseRedirect('/chat/')
+    else:
+        return HttpResponseRedirect('/chat/')
+
+
+def chat(request):
+    messages = Messages.objects.all()
+    return render(request, 'messenger/index.html', {'messages': messages})
