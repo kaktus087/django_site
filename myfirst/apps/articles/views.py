@@ -94,7 +94,7 @@ def change_image(request):
 def send_message(request):
     if (len(request.POST['text_message']) < 1) == False :
         message = Messages(
-        username=request.user,
+        #username=request.user,
         text=request.POST['text_message'],
         timestamp= timezone.now())
         message.save()

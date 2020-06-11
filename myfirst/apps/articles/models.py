@@ -44,7 +44,7 @@ class Images(models.Model):
 
 class Messages(models.Model):
     naming_message = 'Message'
-    username = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор сообщения')
+    #username = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор сообщения')
     text = models.TextField('Текст сообщения')
     timestamp = models.TimeField('Время отправки сообщения')
 
