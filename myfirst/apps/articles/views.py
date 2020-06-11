@@ -1,16 +1,13 @@
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from .models import Article, Comment, Images, Messages
+from .models import Article, Comment, Images, Message
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 import webbrowser
 import time
 import requests
-
-messages = [
-    {'username': 'Jack', 'text': 'Hello!', 'timestamp': time.time()}
-]
+#from bs4 import BeautifulSoup as BS
 
 def index(request):
     latest_article_list = Article.objects.order_by('-pub_date')
@@ -54,7 +51,6 @@ def create_article(request):
             article_text=request.POST['article_text'],
             pub_date=timezone.now())
         a.save()
-        # a.author = request.user
         return HttpResponseRedirect('/articles/')
 
     else:
@@ -91,18 +87,27 @@ def change_image(request):
         return HttpResponseRedirect("/vitalik/")
     return HttpResponseRedirect("/vitalik/")
 
+
 def send_message(request):
-    if (len(request.POST['text_message']) < 1) == False :
-        message = Messages(
-        #username=request.user,
-        text=request.POST['text_message'],
-        timestamp= timezone.now())
-        message.save()
-        return HttpResponseRedirect('/chat/')
-    else:
-        return HttpResponseRedirect('/chat/')
+    message = Message(
+    username=request.user,
+    text=request.POST['text_message'],
+    timestamp= timezone.now())
+    message.save()
+    return HttpResponseRedirect('/chat/')
 
 
 def chat(request):
-    messages = Messages.objects.all()
+    messages = Message.objects.all()
     return render(request, 'messenger/index.html', {'messages': messages})
+
+def get_messages(request):
+    all_usernames = []
+    all_texts = []
+    for i in Message.objects.all():
+        all_usernames.append(i.username)
+        all_usernames.append(' ')
+        all_texts.append(i.text)
+        all_texts.append(' ')
+    return HttpResponse(all_usernames, all_texts)
+
