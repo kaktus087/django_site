@@ -45,3 +45,4 @@ websockets
 whitenoise
 wrapt
 yarl
+bs4
