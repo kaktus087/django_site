@@ -7,7 +7,7 @@ from django.utils import timezone
 import webbrowser
 import time
 import requests
-#from bs4 import BeautifulSoup as BS
+from bs4 import BeautifulSoup as BS
 
 def index(request):
     latest_article_list = Article.objects.order_by('-pub_date')
@@ -102,12 +102,18 @@ def chat(request):
     return render(request, 'messenger/index.html', {'messages': messages})
 
 def get_messages(request):
-    all_usernames = []
-    all_texts = []
-    for i in Message.objects.all():
-        all_usernames.append(i.username)
-        all_usernames.append(' ')
-        all_texts.append(i.text)
-        all_texts.append(' ')
-    return HttpResponse(all_usernames, all_texts)
-
+    #all_usernames = []
+    #all_texts = []
+    #for i in Message.objects.all():
+    #    all_usernames.append(i.username)
+    #    all_usernames.append(' ')
+    #    all_texts.append(i.text)
+    #    all_texts.append(' ')
+    #return HttpResponse(all_usernames, all_texts)
+    r = requests.get('http://127.0.0.1:8000/chat')
+    html = BS(r.content, 'html.parser')
+    all_messages = []
+    for el in html.select('.something_class'):
+        title = el.select('.something_class > p')
+        all_messages.append(title[0].text)
+    return HttpResponse(all_messages)

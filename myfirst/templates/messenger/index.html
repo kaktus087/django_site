@@ -2,15 +2,13 @@
 {% block title %}Chat{% endblock %}
 {% block content %}
 <div>
-	<table border="1" class="table_messages">
-		{% for message in messages %}
-			<tr>
-				<td><div class="something_class"><p>{{message.username}}</p></div></td>
-				<td><div class="something_class"><p>{{message.text}}</p></div></td>
-				<td><div class="something_class"><p>{{message.timestamp}}</p></div></td>
-			</tr>
-		{% endfor %}
-	</table>
+
+	{% for message in messages %}
+
+		<div class="something_class"><p>{{message.username}} {{message.text}} {{message.timestamp}}</p></div>
+		
+	{% endfor %}
+
 </div>
 <form action="{% url 'articles:send_message' %}" method="POST">
 	{% csrf_token %}

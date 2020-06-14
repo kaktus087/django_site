@@ -43,12 +43,13 @@ class Images(models.Model):
         return self.image_name
 
 class Message(models.Model):
+    naming_message = 'Message'
     username = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор сообщения')
     text = models.TextField('Текст сообщения')
     timestamp = models.TimeField('Время отправки сообщения')
 
-   # def __str__(self):
-      #  return self.username
+    def __str__(self):
+        return self.naming_message
 
     class Meta:
         verbose_name = 'Message'
