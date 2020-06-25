@@ -15,5 +15,5 @@ urlpatterns = [
     path('vitalik/change_image/', views.change_image, name='change_image'),
    	path('send_message/', views.send_message, name='send_message'),
     path('chat/', views.chat, name='chat'),
-    path('get_messages', views.get_messages, name='get_messages'),
+    path('get_messages/', views.get_messages, name='get_messages'),
 ]

@@ -110,10 +110,11 @@ def get_messages(request):
     #    all_texts.append(i.text)
     #    all_texts.append(' ')
     #return HttpResponse(all_usernames, all_texts)
-    r = requests.get('http://127.0.0.1:8000/chat')
-    html = BS(r.content, 'html.parser')
-    all_messages = []
-    for el in html.select('.something_class'):
-        title = el.select('.something_class > p')
-        all_messages.append(title[0].text)
-    return HttpResponse(all_messages)
+    return HttpResponse("1")
+    #r = requests.get('http://127.0.0.1:8000/chat')
+    #html = BS(r.content, 'html.parser')
+    #all_messages = []
+    #for el in html.select('.something_class'):
+    #    title = el.select('.something_class > p')
+    #    all_messages.append(title[0].text)
+    #return HttpResponse(all_messages)

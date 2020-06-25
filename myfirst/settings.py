@@ -150,5 +150,3 @@ STATICFILES_DIRS = (os.path.join('static'), )
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-
-
